@@ -1,0 +1,15 @@
+<div class="card-container">
+  <div class="card-img">
+    <img [src]="'https://image.tmdb.org/t/p/original' + posterImg" />
+    <span>{{ score }}</span>
+  </div>
+  <div class="card-info">
+    <p class="card-info__title">{{ title }}</p>
+    <div class="card-info__subinfo">
+      <span class="card-info__subinfo__original">{{ originalTitle }}</span>
+      <span class="card-info__subinfo__year">{{
+        releaseDate | date : "yyyy"
+      }}</span>
+    </div>
+  </div>
+</div>

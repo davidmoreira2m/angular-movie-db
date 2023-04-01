@@ -1,0 +1,29 @@
+<div class="container" *ngIf="moviesData">
+  <div id="list-content">
+    <div class="list-type">
+      <button (click)="popularList()">Mais Vistos</button>
+      <button (click)="topRatedList()">Melhores Avaliados</button>
+      <button (click)="onTheatresList()">Nos Cinemas</button>
+    </div>
+    <div class="movie-list">
+      <app-movie-card
+        *ngFor="let movie of moviesData.results"
+        [posterImg]="movie.poster_path"
+        [score]="movie.vote_average"
+        [title]="movie.title"
+        [originalTitle]="movie.original_title"
+        [releaseDate]="movie.release_date"
+        (click)="movieDetails(movie.id)"
+      ></app-movie-card>
+    </div>
+    <div class="movie-pagination">
+      <button (click)="previousPage()" *ngIf="page > 1">Página Anterior</button>
+      <button (click)="nextPage()">Próxima Página</button>
+    </div>
+  </div>
+
+  <div class="movie-details__container" *ngIf="movieDetailsData">
+    <button (click)="movieDetailsData = undefined">fechar</button>
+    <app-movie-details [movieDetails]="movieDetailsData"></app-movie-details>
+  </div>
+</div>
