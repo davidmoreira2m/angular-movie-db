@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MoviedbService } from 'src/app/services/moviedb.service';
 import { MovieList } from 'src/app/model/movieList.model';
 import { MovieDetails } from 'src/app/model/movieDetails.model';
+import { MovieVideos } from 'src/app/model/movieVideos.model';
 
 @Component({
   selector: 'app-movies-list',
@@ -16,6 +17,7 @@ export class MoviesListComponent implements OnInit {
   maxPage: number = 0;
   moviesData?: MovieList;
   movieDetailsData?: MovieDetails;
+  movieVideosData?: MovieVideos;
 
   constructor(private moviedbService: MoviedbService) {}
 
@@ -37,7 +39,16 @@ export class MoviesListComponent implements OnInit {
       .getMovieDetails(idSelected, this.idioma)
       .subscribe((response) => {
         this.movieDetailsData = response;
+        this.movieVideos(idSelected);
+        console.log(this.movieDetailsData);
       });
+  }
+
+  movieVideos(idSelected: number) {
+    this.moviedbService.getMovieVideos(idSelected).subscribe((response) => {
+      this.movieVideosData = response;
+      console.log(this.movieVideosData.results);
+    });
   }
 
   popularList() {

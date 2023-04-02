@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { MovieList } from '../model/movieList.model';
 import { MovieDetails } from '../model/movieDetails.model';
+import { MovieVideos } from '../model/movieVideos.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -34,6 +35,16 @@ export class MoviedbService {
   getMovieDetails(id: number, idioma: string): Observable<MovieDetails> {
     return this.http.get<MovieDetails>(
       `${this.url}${id}?api_key=${this.key}&language=${idioma}`,
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
+  getMovieVideos(id: number): Observable<MovieVideos> {
+    return this.http.get<MovieVideos>(
+      `
+    ${this.url}${id}/videos?api_key=${this.key}&language=en-US`,
       {
         headers: this.headers,
       }
