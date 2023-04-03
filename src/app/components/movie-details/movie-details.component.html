@@ -1,5 +1,6 @@
 <div class="container" *ngIf="movieDetails">
   <img
+    class="background"
     [src]="'https://image.tmdb.org/t/p/original' + movieDetails.backdrop_path"
     alt=""
   />
@@ -8,16 +9,27 @@
       <div class="content__info">
         <h1 class="title">{{ movieDetails.title }}</h1>
         <h4 class="original-title">{{ movieDetails.original_title }}</h4>
+        <p class="year">Ano: {{ movieDetails.release_date | date : "yyyy" }}</p>
+        <p class="runtime">Duração: {{ movieDetails.runtime }} minutos</p>
         <div class="genres">
           <span *ngFor="let genre of movieDetails.genres" class="genre">
             {{ genre.name }}
           </span>
         </div>
-        <p class="score">⭐{{ movieDetails.vote_average }}<span>/10</span></p>
+        <p class="score">
+          ⭐ {{ movieDetails.vote_average | number : "1.1-1" }}<span>/10</span>
+        </p>
         <p class="overview">{{ movieDetails.overview }}</p>
         <button>Adicionar aos favoritos ❤️</button>
       </div>
-      <div class="content__trailer" *ngIf="movieVideos"></div>
+      <div class="content__img-video" *ngIf="movieVideos">
+        <img
+          [src]="
+            'https://image.tmdb.org/t/p/original' + movieDetails.poster_path
+          "
+          alt=""
+        />
+      </div>
     </div>
   </div>
 </div>

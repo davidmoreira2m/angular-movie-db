@@ -40,6 +40,7 @@ export class MoviesListComponent implements OnInit {
       .subscribe((response) => {
         this.movieDetailsData = response;
         this.movieVideos(idSelected);
+
         console.log(this.movieDetailsData);
       });
   }
