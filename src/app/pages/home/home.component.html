@@ -1,1 +1,24 @@
-<p>home works!</p>
+<header>
+  <nav class="menu-bar">
+    <div class="menu-buttons">
+      <button>Filmes</button>
+      <button>Séries</button>
+      <button>Favoritos</button>
+    </div>
+  </nav>
+</header>
+<main>
+  <div class="search-filter">
+    <nav class="filter-bar">
+      <input type="text" name="search" id="" />
+      <div class="filter-buttons">
+        <button (click)="movielist.popularList()">Mais Vistos</button>
+        <button (click)="movielist.topRatedList()">Melhores Avaliados</button>
+        <button (click)="movielist.onTheatresList()">Nos Cinemas</button>
+      </div>
+    </nav>
+  </div>
+  <div class="content-list">
+    <app-movies-list #movielist> </app-movies-list>
+  </div>
+</main>

@@ -1,10 +1,5 @@
 <div class="container">
   <div id="list-content" *ngIf="moviesData">
-    <div class="list-type">
-      <button (click)="popularList()">Mais Vistos</button>
-      <button (click)="topRatedList()">Melhores Avaliados</button>
-      <button (click)="onTheatresList()">Nos Cinemas</button>
-    </div>
     <div class="movie-list">
       <app-movie-card
         *ngFor="let movie of moviesData.results"
@@ -17,7 +12,9 @@
       ></app-movie-card>
     </div>
     <div class="movie-pagination">
-      <button (click)="previousPage()" *ngIf="page > 1">Página Anterior</button>
+      <button (click)="previousPage()" *ngIf="listCont.page > 1">
+        Página Anterior
+      </button>
       <button (click)="nextPage()">Próxima Página</button>
     </div>
   </div>

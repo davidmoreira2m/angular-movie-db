@@ -1,0 +1,39 @@
+header {
+  .menu-bar {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    height: 50px;
+    padding: 10px;
+    background-color: black;
+
+    .menu-buttons {
+      display: flex;
+      gap: 15px;
+    }
+  }
+}
+main {
+  display: flex;
+  .search-filter {
+    min-width: 250px;
+    background-color: rgb(41, 41, 41);
+    display: flex;
+    flex-direction: column;
+    justify-items: stretch;
+    padding: 15px;
+
+    .filter-bar {
+      .filter-buttons {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .content-list {
+    height: calc(100vh - 100px);
+    background-color: rgb(0, 136, 255);
+    overflow-y: scroll;
+  }
+}

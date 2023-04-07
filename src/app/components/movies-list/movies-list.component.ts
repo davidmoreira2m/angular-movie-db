@@ -10,11 +10,14 @@ import { MovieVideos } from 'src/app/model/movieVideos.model';
   styleUrls: ['./movies-list.component.scss'],
 })
 export class MoviesListComponent implements OnInit {
-  typeList: string = 'popular';
-  idioma: string = 'pt-BR';
-  page: number = 1;
-  id: number = 0;
-  maxPage: number = 0;
+  listCont = {
+    typeList: 'popular',
+    idioma: 'pt-BR',
+    page: 1,
+    id: 0,
+    maxPage: 0,
+  };
+
   moviesData?: MovieList;
   movieDetailsData?: MovieDetails;
   movieVideosData?: MovieVideos;
@@ -27,17 +30,21 @@ export class MoviesListComponent implements OnInit {
 
   loadMoviesList() {
     this.moviedbService
-      .getMovies(this.typeList, this.idioma, this.page)
+      .getMovies(
+        this.listCont.typeList,
+        this.listCont.idioma,
+        this.listCont.page
+      )
       .subscribe((response) => {
         this.moviesData = response;
-        this.maxPage = response.total_pages;
+        this.listCont.maxPage = response.total_pages;
         this.movieDetailsData = undefined;
       });
   }
 
   movieDetails(idSelected: number) {
     this.moviedbService
-      .getMovieDetails(idSelected, this.idioma)
+      .getMovieDetails(idSelected, this.listCont.idioma)
       .subscribe((response) => {
         this.movieDetailsData = response;
         this.movieVideos(idSelected);
@@ -53,33 +60,33 @@ export class MoviesListComponent implements OnInit {
   }
 
   popularList() {
-    this.typeList = 'popular';
-    this.page = 1;
+    this.listCont.typeList = 'popular';
+    this.listCont.page = 1;
     this.loadMoviesList();
   }
 
   topRatedList() {
-    this.typeList = 'top_rated';
-    this.page = 1;
+    this.listCont.typeList = 'top_rated';
+    this.listCont.page = 1;
     this.loadMoviesList();
   }
 
   onTheatresList() {
-    this.typeList = 'now_playing';
-    this.page = 1;
+    this.listCont.typeList = 'now_playing';
+    this.listCont.page = 1;
     this.loadMoviesList();
   }
 
   nextPage() {
-    if (this.maxPage >= this.page) {
-      this.page += 1;
+    if (this.listCont.maxPage >= this.listCont.page) {
+      this.listCont.page += 1;
       this.loadMoviesList();
     }
   }
 
   previousPage() {
-    if (this.page >= 1) {
-      this.page -= 1;
+    if (this.listCont.page >= 1) {
+      this.listCont.page -= 1;
       this.loadMoviesList();
     }
   }
