@@ -67,6 +67,11 @@
           font-weight: 400;
           color: rgb(195, 195, 195);
         }
+
+        .buttons {
+          display: flex;
+          gap: 20px;
+        }
       }
 
       .content__img-video {
