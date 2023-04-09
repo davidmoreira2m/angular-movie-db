@@ -47,6 +47,10 @@ export class MoviesListComponent implements OnInit {
       .getMovieDetails(idSelected, this.listCont.idioma)
       .subscribe((response) => {
         this.movieDetailsData = response;
+        this.movieDetailsData.poster_path =
+          'https://image.tmdb.org/t/p/original' +
+          this.movieDetailsData.poster_path;
+        console.log(this.movieDetailsData.poster_path);
         this.movieVideos(idSelected);
       });
     this.moviesData = undefined;
@@ -55,7 +59,6 @@ export class MoviesListComponent implements OnInit {
   movieVideos(idSelected: number) {
     this.moviedbService.getMovieVideos(idSelected).subscribe((response) => {
       this.movieVideosData = response;
-      console.log(this.movieVideosData.results);
     });
   }
 

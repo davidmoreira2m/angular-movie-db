@@ -1,9 +1,4 @@
 <div class="container" *ngIf="movieDetails">
-  <img
-    class="background"
-    [src]="'https://image.tmdb.org/t/p/original' + movieDetails.backdrop_path"
-    alt=""
-  />
   <div class="content__container">
     <div class="content">
       <div class="content__info">
@@ -33,12 +28,7 @@
         </div>
       </div>
       <div class="content__img-video" *ngIf="movieVideos">
-        <img
-          [src]="
-            'https://image.tmdb.org/t/p/original' + movieDetails.poster_path
-          "
-          alt=""
-        />
+        <img [src]="movieDetails.poster_path" alt="" />
       </div>
     </div>
   </div>
