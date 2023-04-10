@@ -12,7 +12,7 @@ import { MovieVideos } from 'src/app/model/movieVideos.model';
 export class MoviesListComponent implements OnInit {
   listCont = {
     typeList: 'popular',
-    idioma: 'pt-BR',
+    idioma: 'en-US',
     page: 1,
     id: 0,
     maxPage: 0,
@@ -38,7 +38,6 @@ export class MoviesListComponent implements OnInit {
       .subscribe((response) => {
         this.moviesData = response;
         this.listCont.maxPage = response.total_pages;
-        this.movieDetailsData = undefined;
       });
   }
 
@@ -50,8 +49,6 @@ export class MoviesListComponent implements OnInit {
         this.movieDetailsData.poster_path =
           'https://image.tmdb.org/t/p/original' +
           this.movieDetailsData.poster_path;
-        console.log(this.movieDetailsData.poster_path);
-        this.movieVideos(idSelected);
       });
     this.moviesData = undefined;
   }
@@ -92,5 +89,10 @@ export class MoviesListComponent implements OnInit {
       this.listCont.page -= 1;
       this.loadMoviesList();
     }
+  }
+
+  resetDetailsAndVideos() {
+    this.movieDetailsData = undefined;
+    this.movieVideosData = undefined;
   }
 }

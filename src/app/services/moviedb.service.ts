@@ -44,7 +44,7 @@ export class MoviedbService {
   getMovieVideos(id: number): Observable<MovieVideos> {
     return this.http.get<MovieVideos>(
       `
-    ${this.url}${id}/videos?api_key=${this.key}&language=pt-BR`,
+    ${this.url}${id}/videos?api_key=${this.key}&languageen-US`,
       {
         headers: this.headers,
       }

@@ -8,7 +8,7 @@
         [title]="movie.title"
         [originalTitle]="movie.original_title"
         [releaseDate]="movie.release_date"
-        (click)="movieDetails(movie.id)"
+        (click)="movieDetails(movie.id); this.movieVideos(movie.id)"
       ></app-movie-card>
     </div>
     <div class="movie-pagination">
@@ -21,7 +21,9 @@
 
   <div class="movie-details__container" *ngIf="movieDetailsData">
     <div class="movie-details__content">
-      <button (click)="loadMoviesList()">fechar</button>
+      <button (click)="loadMoviesList(); resetDetailsAndVideos()">
+        fechar
+      </button>
       <app-movie-details
         [movieDetails]="movieDetailsData"
         [movieVideos]="movieVideosData"
